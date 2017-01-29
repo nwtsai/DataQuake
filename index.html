@@ -30,9 +30,7 @@
 	        <li id = "past_month"><a href="#">Past Month</a></li>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
-	</nav>
-    
-    <ul id='sample'></ul> <!-- Remove this sample element -->
+	</nav>    
 
     <script src='handlebars-v4.0.5.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
@@ -40,22 +38,18 @@
 
     <script id="earthquake-data" type="text/x-handlebars-template">
 	    {{#each .}}
-		  <div class="entry">
-		    <h1>{{this.properties.title}}</h1>
-		    <div class="body">
+		  <div class="earthquake-title">
+			  {{this.properties.title}}
+		    <div class="earthquake-magnitude">
 		      {{this.properties.mag}}
 		    </div>
 		  </div>
 		{{/each}}
 	</script>
 
-	<div class = "Title">
-		<h1>Earthquakes</h1>
-	</div>
+	<div class = "Title">Earthquakes</div>
 
-	<div class="earthquake-data-template">
-
-	</div>
+	<div class="earthquake-data-template"></div>
 
 </body>
 </html>

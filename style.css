@@ -1,4 +1,22 @@
 .Title
 {
 	font-family: "Montserrat";
+	font-size: 70px;
+}
+
+.earthquake-data-template
+{
+	margin-left: 4em;
+}
+
+.earthquake-title
+{
+	font-family: "Montserrat";
+	font-size: 40px;
+}
+
+.earthquake-magnitude
+{
+	font-family: "Montserrat";
+	font-size: 25px;
 }

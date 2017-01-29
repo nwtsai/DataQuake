@@ -43,7 +43,7 @@ function getEarthquakeData(url)
     {
       // Output earthquakes to the page
       console.log(res);
-      simpleEarthquakeDisplay(res.features);
+      // simpleEarthquakeDisplay(res.features);
 
       // Handlebars getting template and getting data
       var source   = $("#earthquake-data").html();
