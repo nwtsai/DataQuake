@@ -21,7 +21,7 @@ $(document).ready(function()
 
 function transitionToData(timeInterval)
 {
-    $(".entire-container").hide();
+    $(".entire-koala").hide();
     $("body").css("background-color","#e3cda4");
     $("#Description2").text("");
     var descrip1 = "Earthquake locations followed by their respective magnitudes within the past ";

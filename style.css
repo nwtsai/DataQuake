@@ -385,7 +385,8 @@ body
   height:102px;
   border-radius:100%;
   background:#FCD12D;
-  margin:30px 340px
+  margin: 30px 244px
+  /* margin: 30px 340px */
 }
 
 .nubes,.nubes3
@@ -399,13 +400,15 @@ body
 .nubes
 {
    width:112px;
-   margin: 90px 251px
+   margin: 90px 155px
+   /* margin: 90px 251px */
 }
 
 .nubes3
 {
    width:121px;
-   margin: 70px 430px
+   margin: 70px 334px
+   /* margin: 70px 430px; */
 }
 
 .nubes::before, .nubes3::before
@@ -421,12 +424,14 @@ body
 {
   width:112px;
   margin: 21px 35px
+  /* margin: 21px 35px */
 }
 
 .nubes3::before
 {
   width:90px;
   margin: 21px -12px
+  /* margin: 21px -12px */
 }
 
 @keyframes sube
