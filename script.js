@@ -62,9 +62,8 @@ function getEarthquakeData(url)
   $.get(EARTHQUAKE_API)
     .done(function(res) 
     {
-      // Output earthquakes to the page
+      // Output earthquake data to the console
       console.log(res);
-      // simpleEarthquakeDisplay(res.features);
 
       // Handlebars getting template and getting data
       var source   = $("#earthquake-data").html();
@@ -77,16 +76,18 @@ function getEarthquakeData(url)
     {
       // Do something with the error
     })
-
-  // SAMPLE: Display the earthquake titles on the page
-  function simpleEarthquakeDisplay(quakes) 
-  {
-    var container = $('#sample').empty();
-    quakes.forEach(function(quake) 
-    {
-        var quakeEl = $('<li></li>')
-        .text(quake.properties.title)
-        .appendTo(container);
-    });
-  }
 }
+
+// Converts a UNIX timestamp to a standard calendar date by creating a helper function for Handlebars.js
+Handlebars.registerHelper("convertTime", function(UNIX_timestamp) 
+{
+  var a = new Date(UNIX_timestamp * 1000);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var time = month + ' ' + date + ', ' + year + ' ' + hour + ':' + min;
+  return time;
+});

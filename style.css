@@ -29,15 +29,25 @@ body
 .earthquake-place
 {
 	font-family: "Montserrat";
-	color: #7e827a;
+	color: #2f343b;
+  opacity: 0.90;
 	font-size: 35px;
 }
 
 .earthquake-magnitude
 {
 	font-family: "Montserrat";
-	font-size: 25px;
+	font-size: 35px;
 	color: #703030;
+  margin-top: 25px;
+}
+
+.earthquake-timestamp
+{
+  font-family: "Montserrat";
+  font-size: 15px;
+  margin-top: 5px;
+  color: #7e827a;
 }
 
 .dataSource
