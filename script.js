@@ -1,44 +1,59 @@
 $(document).ready(function() 
 {  
-  // Onclick for past day
-  $("#past_day").click(function() 
-  {
-    $(".entire-container").hide();
-    $(".Title").text("Past Day");
-    $("#Description1").text("Earthquake locations followed by their respective magnitudes within the past 24 hours");
-    $("#Description2").text("");
-    getEarthquakeData("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson");
-    $("#past_week").removeClass("active");
-    $("#past_month").removeClass("active");
-    $("#past_day").addClass("active");
-  });
+    // Onclick for past day
+    $("#past_day").click(function() 
+    {
+        transitionToData("Day");
+    });
 
-  // Onclick for past week
-  $("#past_week").click(function() 
-  {
-    $(".entire-container").hide();
-    $(".Title").text("Past Week");
-    $("#Description1").text("Earthquake locations followed by their respective magnitudes within the past week");
-    $("#Description2").text("");
-    getEarthquakeData("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson");
-    $("#past_day").removeClass("active");
-    $("#past_month").removeClass("active");
-    $("#past_week").addClass("active");
-  });
+    // Onclick for past week
+    $("#past_week").click(function() 
+    {
+        transitionToData("Week");
+    });
 
-  // Onlick for past month
-  $("#past_month").click(function() 
-  {
-    $(".entire-container").hide();
-    $(".Title").text("Past Month");
-    $("#Description1").text("Earthquake locations followed by their respective magnitudes within the past month");
-    $("#Description2").text("");
-    getEarthquakeData("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson");
-    $("#past_week").removeClass("active");
-    $("#past_day").removeClass("active");
-    $("#past_month").addClass("active");
-  });
+    // Onlick for past month
+    $("#past_month").click(function() 
+    {
+        transitionToData("Month");
+    });
 });
+
+function transitionToData(timeInterval)
+{
+    $(".entire-container").hide();
+    $("body").css("background-color","#e3cda4");
+    $("#Description2").text("");
+    var descrip1 = "Earthquake locations followed by their respective magnitudes within the past ";
+
+    if (timeInterval === "Day")
+    {
+        $(".Title").text("Past Day");
+        $("#Description1").text(descrip1 + "24 hours");
+        getEarthquakeData("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson");
+        $("#past_week").removeClass("active");
+        $("#past_month").removeClass("active");
+        $("#past_day").addClass("active");
+    }
+    else if (timeInterval === "Week")
+    {
+        $(".Title").text("Past Week");
+        $("#Description1").text(descrip1 + "week");
+        getEarthquakeData("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson");
+        $("#past_day").removeClass("active");
+        $("#past_month").removeClass("active");
+        $("#past_week").addClass("active");
+    }
+    else if (timeInterval === "Month")
+    {
+        $(".Title").text("Past Month");
+        $("#Description1").text(descrip1 + "month");
+        getEarthquakeData("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson");
+        $("#past_week").removeClass("active");
+        $("#past_day").removeClass("active");
+        $("#past_month").addClass("active");
+    }
+}
 
 // Grabs the Earthquake data from the URL
 function getEarthquakeData(url)

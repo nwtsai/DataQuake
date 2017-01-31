@@ -1,3 +1,8 @@
+body
+{
+  background-color: lightblue;
+}
+
 .Title
 {
 	font-family: "Montserrat";
@@ -45,7 +50,7 @@
 .divider 
 {
 	position: relative;
-	border-bottom: 1px solid #f0f0f0;
+	border-bottom: 1px solid #2f343b;
 	margin-bottom: 30px;
 	margin-top: 30px; 
 }
@@ -56,7 +61,7 @@
 	content: '';
 	width: 30px;
 	height: 30px;
-	border: 1px solid #f0f0f0;
+	border: 1px solid #2f343b;
 	left: 50%;
 	margin-left: -15px;
 	top: 50%;
@@ -74,11 +79,11 @@
 	content: '';
 	width: 20px;
 	height: 20px;
-	border: 1px solid #e3cda4;
+	border: 1px solid #c77966;
 	left: 50%;
 	margin-left: -10px;
 	top: 50%;
-	background: #e3cda4;
+	background: #c77966;
 	margin-top: -10px;
 	-webkit-transform: rotate(45deg);
 	-moz-transform: rotate(45deg);
@@ -92,8 +97,7 @@
   width:800px;
   height:600px;
   background:lightblue;
-  margin-top: 50px;
-  margin-left: 50px;
+  margin-left: 25px;
 }
 
 .body

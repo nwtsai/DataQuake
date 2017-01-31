@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
 	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -33,9 +33,11 @@
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src='script.js'></script>
 
+    <div class="jumbotron">
 	<div class = "Title">Earthquake Data</div>
 	<h4 id="Description1">This website displays the data of earthquakes around the world in a given time frame.</h4>
 	<h4 id="Description2">To keep the koalas safe, stay aware of the earthquakes happening around the world.</h4>
+	</div>
 	
 	<div class="entire-container">
 	<div class="koala-container">
@@ -68,8 +70,6 @@
 	<div class="earthquake-data-template"></div>
     <script id="earthquake-data" type="text/x-handlebars-template">
 	    {{#each .}}
-	    	<div class="divider"></div>
-	    	<br />
 			<div class="earthquake-place">
 		  		{{this.properties.place}}
 		  	</div>
@@ -77,8 +77,8 @@
 		      	{{this.properties.mag}}
 		    </div>
 		    <br />
+		    <div class="divider"></div>
 		{{/each}}
-		<div class="divider"></div>
 		<div class ="dataSource">All data is provided by The United States Geological Survey (<a href="http://earthquake.usgs.gov/" target="_blank">USGS</a>)</div>
 	</script>
 
