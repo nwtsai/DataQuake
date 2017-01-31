@@ -81,7 +81,7 @@ function getEarthquakeData(url)
 // Converts a UNIX timestamp to a standard calendar date by creating a helper function for Handlebars.js
 Handlebars.registerHelper("convertTime", function(UNIX_timestamp) 
 {
-  var a = new Date(UNIX_timestamp * 1000);
+  /*var a = new Date(UNIX_timestamp * 1000);
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var year = a.getFullYear();
   var month = months[a.getMonth()];
@@ -89,5 +89,11 @@ Handlebars.registerHelper("convertTime", function(UNIX_timestamp)
   var hour = a.getHours();
   var min = a.getMinutes();
   var time = month + ' ' + date + ', ' + year + ' ' + hour + ':' + min;
-  return time;
+  return time;*/
+
+  var utcSeconds = UNIX_timestamp / 1000.0;
+  var d = new Date(0);
+  d.setUTCSeconds(utcSeconds);
+
+  return d;
 });
