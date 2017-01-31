@@ -1,17 +1,15 @@
 <!doctype html>
 <html>
 <head>
-  <title>Earthquake tracker</title>
+  <title>Earthquake Data</title>
   <meta charset='UTF-8' />
   <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css' />
   <link href='style.css' rel='stylesheet' type='text/css'/>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 <body>
-	<!-- Put your HTML here! -->
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
-	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
 	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 	        <span class="sr-only">Toggle navigation</span>
@@ -22,34 +20,67 @@
 	      <a class="navbar-brand" href="index.html">Earthquake Data</a>
 	    </div>
 
-	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
 	        <li id ="past_day"><a href="#">Past Day<span class="sr-only">(current)</span></a></li>
 	        <li id = "past_week"><a href="#">Past Week</a></li>
 	        <li id = "past_month"><a href="#">Past Month</a></li>
-	    </div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
+	    </div>
+	  </div>
 	</nav>    
 
     <script src='handlebars-v4.0.5.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src='script.js'></script>
 
-    <script id="earthquake-data" type="text/x-handlebars-template">
-	    {{#each .}}
-		  <div class="earthquake-title">
-			  {{this.properties.title}}
-		    <div class="earthquake-magnitude">
-		      {{this.properties.mag}}
-		    </div>
-		  </div>
-		{{/each}}
-	</script>
-
-	<div class = "Title">Earthquakes</div>
+	<div class = "Title">Earthquake Data</div>
+	<h4 id="Description1">This website displays the data of earthquakes around the world in a given time frame.</h4>
+	<h4 id="Description2">To keep the koalas safe, stay aware of the earthquakes happening around the world.</h4>
+	
+	<div class="entire-container">
+	<div class="koala-container">
+    <div class="grass"></div>
+    <div class="body"></div>
+    <div class="body3"></div>
+    <div class="tronco">
+    <div class="koalas">
+    <div class="koala">
+    <div class="legs">
+    <div class="leg"></div>
+    <div class="leg5"></div>
+    <div class="leg3"></div>
+    <div class="leg7"></div>
+    </div>
+    <div class="cabeza">
+    <div class="ojos"><div class="iris"></div></div>
+    <div class="orejas"></div>
+    <div class="orejas3"></div>
+    </div>
+    </div>
+    </div>
+ 	</div>
+    <div class="sol"></div>
+    <div class="nubes"></div>
+    <div class="nubes3"></div>
+	</div>
+	</div>
 
 	<div class="earthquake-data-template"></div>
+    <script id="earthquake-data" type="text/x-handlebars-template">
+	    {{#each .}}
+	    	<div class="divider"></div>
+	    	<br />
+			<div class="earthquake-place">
+		  		{{this.properties.place}}
+		  	</div>
+		    <div class="earthquake-magnitude">
+		      	{{this.properties.mag}}
+		    </div>
+		    <br />
+		{{/each}}
+		<div class="divider"></div>
+		<div class ="dataSource">All data is provided by The United States Geological Survey (<a href="http://earthquake.usgs.gov/" target="_blank">USGS</a>)</div>
+	</script>
 
 </body>
 </html>
