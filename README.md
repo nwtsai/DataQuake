@@ -1,4 +1,4 @@
-# Earthquake Data
+# DataQuake
 A website that automatically formats and populates earthquake data using API calls
 
 # Description
