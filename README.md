@@ -13,7 +13,7 @@ A website that automatically formats and populates earthquake data using API cal
 # Design
 ‣ Sifts through heaps of information by gathering data automatically via an API call to the USGS database
 
-‣ Developed an algorithm that dynamically formats and styles the gathered data using javascript, regardless of the size of the data
+‣ Developed an algorithm that dynamically formats and styles the gathered data using javascript, regardless of the size of the data, using Handlebars.js
 
 ‣ Utilized jQuery calls to modify HTML structures and classes when the user clicks on buttons in order to create an integrated user interface
 
