@@ -2,7 +2,7 @@ var map;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 2,
-        center: {lat: 10, lng: 0},
+        center: {lat: 20, lng: 0},
         mapTypeId: 'terrain'
     });
 
