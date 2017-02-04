@@ -34,6 +34,7 @@
 
     <script src='handlebars-v4.0.5.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+	<script src="map.js"></script>
     <script src='script.js'></script>
 
     <div class="jumbotron">
@@ -74,6 +75,7 @@
 
 	<div class="earthquake-data-template"></div>
     <script id="earthquake-data" type="text/x-handlebars-template">
+		<div id="map"></div>
 	    {{#each .}}
 			<div class="earthquake-place">
 		  		{{this.properties.place}}
@@ -88,7 +90,8 @@
 		    <div class="divider"></div>
 		{{/each}}
 		<div class ="dataSource">All data is provided by The United States Geological Survey (<a href="http://earthquake.usgs.gov/" target="_blank">USGS</a>)</div>
+		<script class="maplink" async defer
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9jYXIa6XGiLiiFZ1tefRQhd-InrQnfa4&callback=initMap">
+		</script>
 	</script>
-
-</body>
 </html>

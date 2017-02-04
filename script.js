@@ -3,18 +3,21 @@ $(document).ready(function()
     // Onclick for past day
     $("#past_day").click(function() 
     {
+        $('.maplink').remove();
         transitionToData("Day");
     });
 
     // Onclick for past week
     $("#past_week").click(function() 
     {
+        $('.maplink').remove();
         transitionToData("Week");
     });
 
     // Onlick for past month
     $("#past_month").click(function() 
     {
+        $('.maplink').remove();
         transitionToData("Month");
     });
 });
@@ -64,6 +67,9 @@ function getEarthquakeData(url)
     {
       // Output earthquake data to the console
       console.log(res);
+      setTimeout(function(){eqfeed_callback(res);
+      }, 500);
+      console.log("done");
 
       // Handlebars getting template and getting data
       var source   = $("#earthquake-data").html();

@@ -3,6 +3,13 @@ body
   background-color: lightblue;
 }
 
+#map {
+  height: 550px;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
 .Title
 {
 	font-family: "Montserrat";
@@ -24,6 +31,7 @@ body
 {
 	margin-left: 50px;
 	margin-top: 60px;
+    margin-right: 50px;
 }
 
 .earthquake-place
