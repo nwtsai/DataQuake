@@ -28,11 +28,12 @@ function transitionToData(timeInterval)
     $("body").css("background-color","#e3cda4");
     $("#Description2").text("");
     var descrip1 = "Earthquake locations followed by their respective magnitudes within the past ";
+    var descrip2 = "Each circle on the map indicates one earthquake, and the larger the magnitude of the quake, the larger the radius.";
 
     if (timeInterval === "Day")
     {
         $(".Title").text("Past Day");
-        $("#Description1").text(descrip1 + "24 hours");
+        $("#Description1").text(descrip1 + "24 hours. " + descrip2);
         getEarthquakeData("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson");
         $("#past_week").removeClass("active");
         $("#past_month").removeClass("active");
@@ -41,7 +42,7 @@ function transitionToData(timeInterval)
     else if (timeInterval === "Week")
     {
         $(".Title").text("Past Week");
-        $("#Description1").text(descrip1 + "week");
+        $("#Description1").text(descrip1 + "week. " + descrip2);
         getEarthquakeData("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson");
         $("#past_day").removeClass("active");
         $("#past_month").removeClass("active");
@@ -50,7 +51,7 @@ function transitionToData(timeInterval)
     else if (timeInterval === "Month")
     {
         $(".Title").text("Past Month");
-        $("#Description1").text(descrip1 + "month");
+        $("#Description1").text(descrip1 + "month. " + descrip2);
         getEarthquakeData("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson");
         $("#past_week").removeClass("active");
         $("#past_day").removeClass("active");
