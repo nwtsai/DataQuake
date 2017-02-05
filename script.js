@@ -117,9 +117,13 @@ function getEarthquakeData(url)
 // Converts a UNIX timestamp to a standard calendar date by creating a helper function for Handlebars.js
 Handlebars.registerHelper("convertTime", function(UNIX_timestamp) 
 {
+  // Convert milliseconds to seconds
   var utcSeconds = UNIX_timestamp / 1000.0;
-  var d = new Date(0);
-  d.setUTCSeconds(utcSeconds);
 
+  // Create a new date with the epoch timestamp
+  var d = new Date(0);
+
+  // Set the seconds and return
+  d.setUTCSeconds(utcSeconds);
   return d;
 });
