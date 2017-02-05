@@ -63,7 +63,7 @@ function transitionToData(timeInterval)
     {
         $(".Title").text("Past Day");
         $("#Description1").text(descrip1 + "24 hours. " + descrip2);
-        getEarthquakeData("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson");
+        getEarthquakeData("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson");
         $("#past_week").removeClass("active");
         $("#past_month").removeClass("active");
         $("#past_day").addClass("active");
@@ -72,7 +72,7 @@ function transitionToData(timeInterval)
     {
         $(".Title").text("Past Week");
         $("#Description1").text(descrip1 + "week. " + descrip2);
-        getEarthquakeData("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson");
+        getEarthquakeData("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson");
         $("#past_day").removeClass("active");
         $("#past_month").removeClass("active");
         $("#past_week").addClass("active");
@@ -81,7 +81,7 @@ function transitionToData(timeInterval)
     {
         $(".Title").text("Past Month");
         $("#Description1").text(descrip1 + "month. " + descrip2);
-        getEarthquakeData("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson");
+        getEarthquakeData("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson");
         $("#past_week").removeClass("active");
         $("#past_day").removeClass("active");
         $("#past_month").addClass("active");
