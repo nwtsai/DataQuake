@@ -48,6 +48,12 @@ $(document).ready(function()
         getEarthquakeData(link);
         */
     });
+
+    $('#search').click(function(e){
+        e.preventDefault();
+        var searchTerm = $('#search-textfield').val();
+        searchEarthquakeData(searchTerm);
+    });
 });
 
 function transitionToData(timeInterval)
@@ -100,7 +106,6 @@ function getEarthquakeData(url)
       console.log(res);
       setTimeout(function(){eqfeed_callback(res);
       }, 500);
-      console.log("done");
 
       // Handlebars getting template and getting data
       var source   = $("#earthquake-data").html();
@@ -113,6 +118,55 @@ function getEarthquakeData(url)
     {
       
     })
+}
+
+//search
+function searchEarthquakeData(searchTerm)
+{
+    var url;
+
+    if($(".Title").text() == "Past Day")
+    {
+        url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson";
+    }
+    else if($(".Title").text() == "Past Week")
+    {
+        url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson";
+    }
+    else if($(".Title").text() == "Past Month")
+    {
+        url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson";
+    }
+    $.get(url)
+        .done(function(res)
+        {
+            // Output earthquake data to the console
+            console.log(res);
+
+            var newRes = res;
+
+            newRes.features = res.features.filter(function(obj){
+                var toSearch = obj.properties.title.toLowerCase();
+                if(toSearch.search(searchTerm.toLowerCase()) != -1)
+                    return true;
+                else
+                    return false;
+            });
+
+            setTimeout(function(){eqfeed_callback(newRes);
+            }, 500);
+
+            // Handlebars getting template and getting data
+            var source   = $("#earthquake-data").html();
+            var template = Handlebars.compile(source);
+            var html    = template(newRes.features);
+
+            $(".earthquake-data-template").html(html);
+        })
+        .fail(function(error)
+        {
+            // Do something with the error
+        })
 }
 
 // Converts a UNIX timestamp to a standard calendar date by creating a helper function for Handlebars.js
