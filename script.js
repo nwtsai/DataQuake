@@ -1,5 +1,8 @@
 $(document).ready(function() 
 {  
+    //hide refresh link in home page
+    if($(".Title").text() == "DataQuake")
+        $("#Description3").hide();
     // Onclick for past day
     $("#past_day").click(function() 
     {
@@ -20,6 +23,17 @@ $(document).ready(function()
         $('.maplink').remove();
         transitionToData("Month");
     });
+
+    $('#Description3').click(function(){
+        var link = "";
+        if($(".Title").text() == "Past Day")
+          link += "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson";
+        if($(".Title").text() == "Past Week")
+          link += "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson";
+        if($(".Title").text() == "Past Month")
+          link += "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson";
+        getEarthquakeData(link);
+    });
 });
 
 function transitionToData(timeInterval)
@@ -27,6 +41,8 @@ function transitionToData(timeInterval)
     $(".entire-koala").hide();
     $("body").css("background-color","#e3cda4");
     $("#Description2").text("");
+    $("#Description3").show();
+    $('#Description3').text("Refresh");
     var descrip1 = "Earthquake locations followed by their respective magnitudes within the past ";
     var descrip2 = "Each circle on the map indicates one earthquake, and the larger the magnitude of the quake, the larger the radius.";
 

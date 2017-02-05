@@ -23,12 +23,19 @@ body
 	margin-top: 25px;
 }
 
-#Description1, #Description2
+#Description1, #Description2, #Description3
 {
 	font-family: "Montserrat";
 	color: #7e827a;
 	margin-left: 50px;
 	margin-top: 25px;
+}
+
+#Description3
+{
+  color: #63b5d4;
+  background-color: #ffffff;
+  padding: 10px;
 }
 
 .earthquake-data-template
