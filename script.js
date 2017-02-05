@@ -3,7 +3,6 @@ $(document).ready(function()
     //hide refresh link in home page
     if($(".Title").text() == "DataQuake")
         $("#Description3").hide();
-
     // Onclick for past day
     $("#past_day").click(function() 
     {
@@ -48,19 +47,10 @@ $(document).ready(function()
         getEarthquakeData(link);
         */
     });
-
-    $('#search').click(function(e){
-        e.preventDefault();
-        var searchTerm = $('#search-textfield').val();
-        searchEarthquakeData(searchTerm);
-    });
-
-    $('#searchbar').hide();
 });
 
 function transitionToData(timeInterval)
 {
-    $('#searchbar').show();
     $(".entire-koala").hide();
     $("body").css("background-color","#e3cda4");
     $("#Description2").text("");
@@ -109,6 +99,7 @@ function getEarthquakeData(url)
       console.log(res);
       setTimeout(function(){eqfeed_callback(res);
       }, 500);
+      console.log("done");
 
       // Handlebars getting template and getting data
       var source   = $("#earthquake-data").html();
@@ -119,69 +110,26 @@ function getEarthquakeData(url)
     })
     .fail(function(error) 
     {
-      
+      // Do something with the error
     })
-}
-
-//search
-function searchEarthquakeData(searchTerm)
-{
-    var url;
-
-    if($(".Title").text() == "Past Day")
-    {
-        url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson";
-    }
-    else if($(".Title").text() == "Past Week")
-    {
-        url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson";
-    }
-    else if($(".Title").text() == "Past Month")
-    {
-        url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson";
-    }
-    $.get(url)
-        .done(function(res)
-        {
-            // Output earthquake data to the console
-            console.log(res);
-
-            var newRes = res;
-
-            newRes.features = res.features.filter(function(obj){
-                var toSearch = obj.properties.title.toLowerCase();
-                if(toSearch.search(searchTerm.toLowerCase()) != -1)
-                    return true;
-                else
-                    return false;
-            });
-
-            setTimeout(function(){eqfeed_callback(newRes);
-            }, 500);
-
-            // Handlebars getting template and getting data
-            var source   = $("#earthquake-data").html();
-            var template = Handlebars.compile(source);
-            var html    = template(newRes.features);
-
-            $(".earthquake-data-template").html(html);
-        })
-        .fail(function(error)
-        {
-            // Do something with the error
-        })
 }
 
 // Converts a UNIX timestamp to a standard calendar date by creating a helper function for Handlebars.js
 Handlebars.registerHelper("convertTime", function(UNIX_timestamp) 
 {
-  // Convert milliseconds to seconds
+  /*var a = new Date(UNIX_timestamp * 1000);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var time = month + ' ' + date + ', ' + year + ' ' + hour + ':' + min;
+  return time;*/
+
   var utcSeconds = UNIX_timestamp / 1000.0;
-
-  // Create a new date with the epoch timestamp
   var d = new Date(0);
-
-  // Set the seconds and return
   d.setUTCSeconds(utcSeconds);
+
   return d;
 });

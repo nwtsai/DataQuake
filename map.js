@@ -1,27 +1,21 @@
 var map;
-function initMap() 
-{
-    map = new google.maps.Map(document.getElementById('map'), 
-    {
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 2,
         center: {lat: 20, lng: 0},
         mapTypeId: 'terrain'
     });
 
-    map.data.setStyle(function(feature) 
-    {
+    map.data.setStyle(function(feature) {
         var magnitude = feature.getProperty('mag');
-        return 
-        {
+        return {
             icon: getCircle(magnitude)
         };
     });
 }
 
-function getCircle(magnitude) 
-{
-    return 
-    {
+function getCircle(magnitude) {
+    return {
         path: google.maps.SymbolPath.CIRCLE,
         fillColor: 'red',
         fillOpacity: .2,
@@ -31,7 +25,6 @@ function getCircle(magnitude)
     };
 }
 
-function eqfeed_callback(results) 
-{
+function eqfeed_callback(results) {
     map.data.addGeoJson(results);
 }
