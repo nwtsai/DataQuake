@@ -3,6 +3,7 @@ $(document).ready(function()
     //hide refresh link in home page
     if($(".Title").text() == "DataQuake")
         $("#Description3").hide();
+      ƒf
     // Onclick for past day
     $("#past_day").click(function() 
     {
@@ -110,7 +111,7 @@ function getEarthquakeData(url)
     })
     .fail(function(error) 
     {
-      // Do something with the error
+      
     })
 }
 
