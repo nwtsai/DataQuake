@@ -3,6 +3,7 @@ $(document).ready(function()
     //hide refresh link in home page
     if($(".Title").text() == "DataQuake")
         $("#Description3").hide();
+      ƒf
     // Onclick for past day
     $("#past_day").click(function() 
     {
@@ -115,7 +116,7 @@ function getEarthquakeData(url)
     })
     .fail(function(error) 
     {
-      // Do something with the error
+      
     })
 }
 
@@ -171,19 +172,13 @@ function searchEarthquakeData(searchTerm)
 // Converts a UNIX timestamp to a standard calendar date by creating a helper function for Handlebars.js
 Handlebars.registerHelper("convertTime", function(UNIX_timestamp) 
 {
-  /*var a = new Date(UNIX_timestamp * 1000);
-  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var year = a.getFullYear();
-  var month = months[a.getMonth()];
-  var date = a.getDate();
-  var hour = a.getHours();
-  var min = a.getMinutes();
-  var time = month + ' ' + date + ', ' + year + ' ' + hour + ':' + min;
-  return time;*/
-
+  // Convert milliseconds to seconds
   var utcSeconds = UNIX_timestamp / 1000.0;
-  var d = new Date(0);
-  d.setUTCSeconds(utcSeconds);
 
+  // Create a new date with the epoch timestamp
+  var d = new Date(0);
+
+  // Set the seconds and return
+  d.setUTCSeconds(utcSeconds);
   return d;
 });
