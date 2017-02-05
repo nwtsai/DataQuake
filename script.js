@@ -3,7 +3,7 @@ $(document).ready(function()
     //hide refresh link in home page
     if($(".Title").text() == "DataQuake")
         $("#Description3").hide();
-      ƒf
+
     // Onclick for past day
     $("#past_day").click(function() 
     {
@@ -54,10 +54,13 @@ $(document).ready(function()
         var searchTerm = $('#search-textfield').val();
         searchEarthquakeData(searchTerm);
     });
+
+    $('#searchbar').hide();
 });
 
 function transitionToData(timeInterval)
 {
+    $('#searchbar').show();
     $(".entire-koala").hide();
     $("body").css("background-color","#e3cda4");
     $("#Description2").text("");
