@@ -25,7 +25,19 @@ $(document).ready(function()
     });
 
     $('#Description3').click(function(){
-        var link = "";
+        if($(".Title").text() == "Past Day")
+        {
+          transitionToData("Day");
+        }
+        else if($(".Title").text() == "Past Week")
+        {
+          transitionToData("Week");
+        }
+        else if($(".Title").text() == "Past Month")
+        {
+          transitionToData("Month");
+        }
+        /*
         if($(".Title").text() == "Past Day")
           link += "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson";
         if($(".Title").text() == "Past Week")
@@ -33,6 +45,7 @@ $(document).ready(function()
         if($(".Title").text() == "Past Month")
           link += "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson";
         getEarthquakeData(link);
+        */
     });
 });
 
