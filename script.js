@@ -41,9 +41,6 @@ $(document).ready(function()
          e.preventDefault();
          var searchTerm = $('#search-textfield').val();
          searchEarthquakeData(searchTerm);
-         $(".Title").text("Search results for \"" + searchTerm + "\"");
-         $("#Description1").text("");
-         $("#Description2").text("");
          $('#Refresh').hide();
     });
 });
@@ -146,15 +143,59 @@ function searchEarthquakeData(searchTerm)
 
         newRes.features = res.features.filter(function(obj)
         {
-            var toSearch = obj.properties.title.toLowerCase();
-            if(toSearch.search(searchTerm.toLowerCase()) != -1)
-                return true;
+            // If the input is not a number, search through the locations array
+            if (isNaN(searchTerm) == true)
+            {
+              var toSearch = obj.properties.title.toLowerCase();
+              if (toSearch.search(searchTerm.toLowerCase()) != -1)
+                  return true;
+              else
+                  return false;
+            }
+
+            // If the input is a number, search through the magnitude array and find magnitudes between between 4 and 5
             else
+            {
+              var toSearch = obj.properties.mag;
+              var searchNum = Number(searchTerm);
+              if (toSearch >= searchNum && toSearch <= 0.9 + searchNum)
+                return true;
+              else
                 return false;
+            }
+            
         });
 
         setTimeout(function(){eqfeed_callback(newRes);
         }, 500);
+
+        // When search button is pressed, change the title
+        $(".Title").text("Search results for \"" + searchTerm + "\"");
+
+        // If there is at least 1 search result
+        if (newRes.features.length > 0)
+        {
+          // If the input is not a number, description tailors to location
+          if (isNaN(searchTerm) == true)
+            $("#Description1").text("Showing only the earthquakes with locations that include \"" + searchTerm + "\"");
+
+          // If the input is a number, description tailors to magnitude
+          else
+            $("#Description1").text("Showing only the earthquakes with magnitudes between " + searchTerm + " and " + (Number(searchTerm) + 0.9));
+        }
+        else
+        {
+          // If the input is not a number, description reads no results
+          if (isNaN(searchTerm) == true)
+            $("#Description1").text("No results for \"" + searchTerm + "\"");
+
+          // If the input is a number, description tailors to magnitude
+          else
+            $("#Description1").text("No results for earthquakes with magnitudes between " + searchTerm + " and " + (Number(searchTerm) + 0.9));
+        }
+
+        // For all cases, clear description 2
+        $("#Description2").text("");
 
         // Handlebars getting template and getting data
         var source   = $("#earthquake-data").html();
