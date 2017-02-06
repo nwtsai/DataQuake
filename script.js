@@ -158,7 +158,7 @@ function searchEarthquakeData(searchTerm)
             // If the input is not a number, search through the locations array
             if (isNaN(searchTerm) == true)
             {
-              var toSearch = obj.properties.title.toLowerCase();
+              var toSearch = obj.properties.place.toLowerCase();
               if (toSearch.search(searchTerm.toLowerCase()) != -1)
                   return true;
               else
@@ -169,7 +169,7 @@ function searchEarthquakeData(searchTerm)
             else
             {
               var toSearch = obj.properties.mag;
-              var searchNum = Number(searchTerm);
+              var searchNum = parseFloat(searchTerm);
               if (toSearch >= searchNum && toSearch <= 0.9 + searchNum)
                 return true;
               else
@@ -189,21 +189,21 @@ function searchEarthquakeData(searchTerm)
         {
           // If the input is not a number, description tailors to location
           if (isNaN(searchTerm) == true)
-            $("#Description1").text("Showing only the earthquakes with locations that include \"" + searchTerm + "\"");
+            $("#Description1").text("Depicting only the earthquakes that occur near " + searchTerm + "\.");
 
           // If the input is a number, description tailors to magnitude
           else
-            $("#Description1").text("Showing only the earthquakes with magnitudes between " + searchTerm + " and " + (Number(searchTerm) + 0.9));
+            $("#Description1").text("Depicting only the earthquakes with magnitudes between " + searchTerm + " and " + (Number(searchTerm) + 0.9) + "\.");
         }
         else
         {
           // If the input is not a number, description reads no results
           if (isNaN(searchTerm) == true)
-            $("#Description1").text("No results for \"" + searchTerm + "\"");
+            $("#Description1").text("No results for \"" + searchTerm + "\"\.");
 
           // If the input is a number, description tailors to magnitude
           else
-            $("#Description1").text("No results for earthquakes with magnitudes between " + searchTerm + " and " + (Number(searchTerm) + 0.9));
+            $("#Description1").text("No results for earthquakes with magnitudes between " + searchTerm + " and " + (Number(searchTerm) + 0.9) + "\.");
         }
 
         // For all cases, clear description 2
