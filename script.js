@@ -54,7 +54,6 @@ function transitionToData(timeInterval)
     $(".entire-koala").hide();
     $("body").css("background-color","#e3cda4");
     $("#Refresh").show();
-    $('#Refresh').text("Refresh");
     var descrip1 = "Earthquake locations and magnitudes within the past ";
     var descrip2 = "Each circle on the map indicates one earthquake; the larger the magnitude of the quake, the larger the radius.";
 
