@@ -3,14 +3,16 @@ body
   background-color: lightblue;
 }
 
-#map {
+#map 
+{
   height: 550px;
   width: 80%;
   margin: auto;
   margin-bottom: 50px;
 }
 
-.jumbotron{
+.jumbotron
+{
   padding-right: 100px;
 }
 
@@ -23,7 +25,7 @@ body
 	margin-top: 25px;
 }
 
-#Description1, #Description2, #Description3
+#Description1, #Description2, #Refresh
 {
 	font-family: "Montserrat";
 	color: #7e827a;
@@ -31,18 +33,17 @@ body
 	margin-top: 25px;
 }
 
-#Description3
+#Refresh
 {
   color: #63b5d4;
   background-color: #ffffff;
-  padding: 10px;
 }
 
 .earthquake-data-template
 {
 	margin-left: 50px;
 	margin-top: 60px;
-    margin-right: 50px;
+  margin-right: 50px;
 }
 
 .earthquake-place

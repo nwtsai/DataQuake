@@ -4,7 +4,7 @@ $(document).ready(function()
 
     //hide refresh link in home page
     if($(".Title").text() == "DataQuake")
-        $("#Description3").hide();
+        $("#Refresh").hide();
 
     // Onclick for past day
     $("#past_day").click(function() 
@@ -27,27 +27,47 @@ $(document).ready(function()
         transitionToData("Month");
     });
 
-    $('#Description3').click(function(){
-        if($(".Title").text() == "Past Day")
+    // When the refresh button is pressed
+    $('#Refresh').click(function()
+    {
+        // User input when the refresh button is pressed
+        var searchTerm = $('#search-textfield').val();
+        console.log(searchTerm);
+
+        // If the textfield isn't empty, reload data with search term
+        if (searchTerm != "")
         {
-          transitionToData("Day");
+          searchEarthquakeData(searchTerm);
         }
-        else if($(".Title").text() == "Past Week")
+
+        // If the textfield is empty, refresh the data with no filters applied
+        else
         {
-          transitionToData("Week");
-        }
-        else if($(".Title").text() == "Past Month")
-        {
-          transitionToData("Month");
+          if ($(".Title").text() == "Past Day")
+          {
+            transitionToData("Day");
+          }
+          else if ($(".Title").text() == "Past Week")
+          {
+            transitionToData("Week");
+          }
+          else if ($(".Title").text() == "Past Month")
+          {
+            transitionToData("Month");
+          }
         }
     });
 
-    // When search is pressed, search for the earthquake text and reload data
+    // When the search button is pressed, search for the earthquake text and reload data
     $('#search').click(function(e)
     {
          e.preventDefault();
          var searchTerm = $('#search-textfield').val();
          searchEarthquakeData(searchTerm);
+         $(".Title").text("Search results for \"" + searchTerm + "\"");
+         $("#Description1").text("");
+         $("#Description2").text("");
+         $("#Refresh").css("margin-top", "0px");
     });
 });
 
@@ -56,16 +76,16 @@ function transitionToData(timeInterval)
     $('#searchbar').show();
     $(".entire-koala").hide();
     $("body").css("background-color","#e3cda4");
-    $("#Description2").text("");
-    $("#Description3").show();
-    $('#Description3').text("Refresh");
-    var descrip1 = "Earthquake locations followed by their respective magnitudes within the past ";
-    var descrip2 = "Each circle on the map indicates one earthquake, and the larger the magnitude of the quake, the larger the radius.";
+    $("#Refresh").show();
+    $('#Refresh').text("Refresh");
+    var descrip1 = "Earthquake locations and magnitudes within the past ";
+    var descrip2 = "Each circle on the map indicates one earthquake; the larger the magnitude of the quake, the larger the radius.";
 
     if (timeInterval === "Day")
     {
         $(".Title").text("Past Day");
-        $("#Description1").text(descrip1 + "24 hours. " + descrip2);
+        $("#Description1").text(descrip1 + "24 hours.");
+        $("#Description2").text(descrip2);
         getEarthquakeData("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson");
         $("#past_week").removeClass("active");
         $("#past_month").removeClass("active");
@@ -74,7 +94,8 @@ function transitionToData(timeInterval)
     else if (timeInterval === "Week")
     {
         $(".Title").text("Past Week");
-        $("#Description1").text(descrip1 + "week. " + descrip2);
+        $("#Description1").text(descrip1 + "week.");
+        $("#Description2").text(descrip2);
         getEarthquakeData("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson");
         $("#past_day").removeClass("active");
         $("#past_month").removeClass("active");
@@ -83,7 +104,8 @@ function transitionToData(timeInterval)
     else if (timeInterval === "Month")
     {
         $(".Title").text("Past Month");
-        $("#Description1").text(descrip1 + "month. " + descrip2);
+        $("#Description1").text(descrip1 + "month.");
+        $("#Description2").text(descrip2);
         getEarthquakeData("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson");
         $("#past_week").removeClass("active");
         $("#past_day").removeClass("active");
