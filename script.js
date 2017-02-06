@@ -43,18 +43,8 @@ $(document).ready(function()
         // If the textfield is empty, refresh the data with no filters applied
         else
         {
-          if ($(".Title").text() == "Past Day")
-          {
-            transitionToData("Day");
-          }
-          else if ($(".Title").text() == "Past Week")
-          {
-            transitionToData("Week");
-          }
-          else if ($(".Title").text() == "Past Month")
-          {
-            transitionToData("Month");
-          }
+          var timeInterval = $('Title').attr('id');
+          transitionToData(timeInterval);
         }
     });
 
@@ -84,6 +74,7 @@ function transitionToData(timeInterval)
     if (timeInterval === "Day")
     {
         $(".Title").text("Past Day");
+        $(".Title").attr('id', 'Day');
         $("#Description1").text(descrip1 + "24 hours.");
         $("#Description2").text(descrip2);
         getEarthquakeData("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson");
@@ -94,6 +85,7 @@ function transitionToData(timeInterval)
     else if (timeInterval === "Week")
     {
         $(".Title").text("Past Week");
+        $(".Title").attr('id', 'Week');
         $("#Description1").text(descrip1 + "week.");
         $("#Description2").text(descrip2);
         getEarthquakeData("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson");
@@ -104,6 +96,7 @@ function transitionToData(timeInterval)
     else if (timeInterval === "Month")
     {
         $(".Title").text("Past Month");
+        $(".Title").attr('id', 'Month');
         $("#Description1").text(descrip1 + "month.");
         $("#Description2").text(descrip2);
         getEarthquakeData("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson");
@@ -144,18 +137,19 @@ function searchEarthquakeData(searchTerm)
 {
     var url;
 
-    if($(".Title").text() == "Past Day")
+    if($(".Title").attr('id') == "Day")
     {
         url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson";
     }
-    else if($(".Title").text() == "Past Week")
+    else if($(".Title").attr('id') == "Week")
     {
         url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson";
     }
-    else if($(".Title").text() == "Past Month")
+    else if($(".Title").attr('id') == "Month")
     {
         url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson";
     }
+
     $.get(url)
         .done(function(res)
         {
@@ -164,7 +158,8 @@ function searchEarthquakeData(searchTerm)
 
             var newRes = res;
 
-            newRes.features = res.features.filter(function(obj){
+            newRes.features = res.features.filter(function(obj)
+            {
                 var toSearch = obj.properties.title.toLowerCase();
                 if(toSearch.search(searchTerm.toLowerCase()) != -1)
                     return true;
