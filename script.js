@@ -30,7 +30,7 @@ $(document).ready(function()
     // When the refresh button is pressed
     $('#Refresh').click(function()
     {
-        var timeInterval = $('.Title').prop('id');
+        var timeInterval = $('.Title').attr('id');
         console.log(timeInterval);
         transitionToData(timeInterval);
     });
