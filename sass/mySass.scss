@@ -1,6 +1,6 @@
 $font: Montserrat;
 $primary:#FF0072;
-$second:#40627C;
+$second:#2f343b;
 $third:#4426a8;
   
 *,
@@ -19,7 +19,7 @@ body {
 
 .dark 
 {
-  background:#24252A;
+  background:#2f343b;
 }
 
 .flex {
@@ -42,16 +42,17 @@ a.bttn {
   }
 }
 
-a.bttn-dark {
+a.bttn-dark 
+{
   color:$second;
   text-decoration:none;
   -webkit-transition:0.3s all ease;
   transition:0.3s ease all;
   &:hover {
-    color:#FFF;
+    color:#eee;
   }
   &:focus {
-    color:#FFF;
+    color:#eee;
   }
 }
 
@@ -104,7 +105,7 @@ a.bttn-dark {
 .bttn-dark 
 {
   font-size:12px;
-  letter-spacing:2px;
+  letter-spacing:1px;
   text-transform:uppercase;
   display:inline-block;
   text-align:center;
@@ -117,8 +118,8 @@ a.bttn-dark {
   box-shadow: 0 2px 10px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.1);
   z-index:2;
   &:before {
-    -webkit-transition:0.5s all ease;
-    transition:0.5s all ease;
+    -webkit-transition:0.7s all ease;
+    transition:0.7s all ease;
     position:absolute;
     top:0;
     left:50%;
@@ -131,16 +132,7 @@ a.bttn-dark {
   }
   &:hover {
     &:before {
-      -webkit-transition:0.5s all ease;
-      transition:0.5s all ease;
-      left:0;
-      right:0;
-      opacity:1;
-    }
-  }
-  &:focus {
-    &:before {
-      -webkit-transition:0.5s all ease;
+      -webkit-transition:0.7s all ease;
       transition:0.5s all ease;
       left:0;
       right:0;
