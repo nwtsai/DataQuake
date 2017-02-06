@@ -3,7 +3,7 @@ $(document).ready(function()
     $('#searchbar').hide();
 
     //hide refresh link in home page
-    if($(".Title").text() == "DataQuake")
+    if($(".Title").text() === "DataQuake")
         $("#Refresh").hide();
 
     // Onclick for past day
@@ -31,17 +31,29 @@ $(document).ready(function()
     $('#Refresh').click(function()
     {
         var timeInterval = $('.Title').attr('id');
-        console.log(timeInterval);
         transitionToData(timeInterval);
     });
 
     // When the search button is pressed, search for the earthquake text and reload data
     $('#search').click(function(e)
     {
-         e.preventDefault();
-         var searchTerm = $('#search-textfield').val();
-         searchEarthquakeData(searchTerm);
-         $('#Refresh').hide();
+        e.preventDefault();
+        var searchTerm = $('#search-textfield').val();
+
+        // If the search term isn't empty, search
+        if (searchTerm != "")
+        {
+          searchEarthquakeData(searchTerm);
+        }
+
+        // If the search term is empty, reload data
+        else
+        {
+          var timeInterval = $('.Title').attr('id');
+          transitionToData(timeInterval);
+        }
+
+        $('#Refresh').hide();
     });
 });
 
