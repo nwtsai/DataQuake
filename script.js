@@ -30,22 +30,9 @@ $(document).ready(function()
     // When the refresh button is pressed
     $('#Refresh').click(function()
     {
-        // User input when the refresh button is pressed
-        var searchTerm = $('#search-textfield').val();
-        console.log(searchTerm);
-
-        // If the textfield isn't empty, reload data with search term
-        if (searchTerm != "")
-        {
-          searchEarthquakeData(searchTerm);
-        }
-
-        // If the textfield is empty, refresh the data with no filters applied
-        else
-        {
-          var timeInterval = $('Title').attr('id');
-          transitionToData(timeInterval);
-        }
+        var timeInterval = $('.Title').prop('id');
+        console.log(timeInterval);
+        transitionToData(timeInterval);
     });
 
     // When the search button is pressed, search for the earthquake text and reload data
@@ -57,7 +44,7 @@ $(document).ready(function()
          $(".Title").text("Search results for \"" + searchTerm + "\"");
          $("#Description1").text("");
          $("#Description2").text("");
-         $("#Refresh").css("margin-top", "0px");
+         $('#Refresh').hide();
     });
 });
 
@@ -151,36 +138,36 @@ function searchEarthquakeData(searchTerm)
     }
 
     $.get(url)
-        .done(function(res)
+    .done(function(res)
+    {
+        // Output earthquake data to the console
+        console.log(res);
+
+        var newRes = res;
+
+        newRes.features = res.features.filter(function(obj)
         {
-            // Output earthquake data to the console
-            console.log(res);
+            var toSearch = obj.properties.title.toLowerCase();
+            if(toSearch.search(searchTerm.toLowerCase()) != -1)
+                return true;
+            else
+                return false;
+        });
 
-            var newRes = res;
+        setTimeout(function(){eqfeed_callback(newRes);
+        }, 500);
 
-            newRes.features = res.features.filter(function(obj)
-            {
-                var toSearch = obj.properties.title.toLowerCase();
-                if(toSearch.search(searchTerm.toLowerCase()) != -1)
-                    return true;
-                else
-                    return false;
-            });
+        // Handlebars getting template and getting data
+        var source   = $("#earthquake-data").html();
+        var template = Handlebars.compile(source);
+        var html    = template(newRes.features);
 
-            setTimeout(function(){eqfeed_callback(newRes);
-            }, 500);
-
-            // Handlebars getting template and getting data
-            var source   = $("#earthquake-data").html();
-            var template = Handlebars.compile(source);
-            var html    = template(newRes.features);
-
-            $(".earthquake-data-template").html(html);
-        })
-        .fail(function(error)
-        {
-            // Do something with the error
-        })
+        $(".earthquake-data-template").html(html);
+    })
+    .fail(function(error)
+    {
+        // Do something with the error
+    })
 }
 
 // Converts a UNIX timestamp to a standard calendar date by creating a helper function for Handlebars.js
@@ -189,6 +176,5 @@ Handlebars.registerHelper("convertTime", function(UNIX_timestamp)
   var utcSeconds = UNIX_timestamp / 1000.0;
   var d = new Date(0);
   d.setUTCSeconds(utcSeconds);
-
   return d;
 });
